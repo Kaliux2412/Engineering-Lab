@@ -1,0 +1,12 @@
+mark {
+  background-color: transparent;
+  border-bottom: 2px solid #C6B4EE;
+  color: inherit;
+}
+
+u{
+u {
+  text-decoration-color: #A48AE0; 
+  text-decoration-thickness: 2px; 
+}
+}

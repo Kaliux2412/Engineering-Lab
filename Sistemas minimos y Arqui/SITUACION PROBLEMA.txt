@@ -1,0 +1,689 @@
+
+// SITUACIÓN PROBLEMA - ENTREGA FINAL
+// Filtro de media móvil de 8 datos
+// Calcula el promedio de ventanas consecutivas de 8 valores
+// y almacena cada resultado en el arreglo Moving
+
+Inicio,
+    // Verifica si todavía quedan datos por procesar
+    Load num_datos
+    Subt ONE
+    SkipCond 400
+    Jump Inicializar
+    Jump Fin
+
+Inicializar,
+    // Calcula la posición inicial de la ventana actual
+    Load ptr_inicial
+    Add inicio_movil
+    Store ptr_Datos
+
+    // Reinicia la suma acumulada
+    Load suma
+    Clear
+    Store suma
+
+    // Reinicia el contador utilizado para calcular el promedio
+    Load resta
+    Clear
+    Store resta
+
+    // Carga el primer dato de la ventana
+    LoadI ptr_Datos
+    Store suma
+    Jump Contador
+
+Contador,
+    // Controla que se procesen los 8 datos de la ventana
+    Load contador
+    Subt ONE
+    SkipCond 400
+    Jump Sumar
+    Jump Dividir
+
+Sumar,
+    // Avanza al siguiente dato
+    Load ptr_Datos
+    Add ONE
+    Store ptr_Datos
+
+    // Agrega el dato actual a la suma
+    Load suma
+    AddI ptr_Datos
+    Store suma
+
+    // Disminuye el contador de datos pendientes
+    Load contador
+    Subt ONE
+    Store contador
+    Jump Contador
+
+Dividir,
+    // Calcula el promedio mediante restas sucesivas
+    // Cada resta del divisor (8) representa una unidad
+    // del resultado final.
+    Load suma
+    Subt divisor
+    SkipCond 000
+    Jump Restar
+    Jump Suavizar
+
+Restar,
+    // Cuenta cuántas veces se puede restar 8 de la suma
+    Load resta
+    Add ONE
+    Store resta
+
+    Load suma
+    Subt divisor
+    Store suma
+    Jump Dividir
+
+Suavizar,
+    // Muestra el promedio calculado
+    Load resta
+    Output
+
+    // Guarda el promedio en la posición correspondiente
+    // del arreglo Moving.
+    Load ptr_Moving
+    Add inicio_movil
+    Store ptr_Moving
+
+    LoadI ptr_Moving
+    Add resta
+    StoreI ptr_Moving
+
+    // Avanza la ventana móvil una posición
+    Load inicio_movil
+    Add ONE
+    Store inicio_movil
+
+    // Restaura el contador a 8 para la siguiente ventana
+    Load contador
+    Subt ONE
+    Add divisor
+    Store contador
+
+    // Reduce la cantidad de datos pendientes
+    Load num_datos
+    Subt ONE
+    Store num_datos
+
+    // Procesa la siguiente ventana
+    Jump Inicio
+
+Fin,
+    Halt
+
+
+
+// VARIABLES Y CONSTANTES
+
+num_suavizado, DEC 0    // Cantidad de valores suavizados
+num_datos, DEC 193      // Cantidad de datos a procesar
+inicio_movil, DEC 0     // Desplazamiento de la ventana móvil
+mover, DEC 0            // Variable auxiliar
+suma, DEC 0             // Suma de los datos de la ventana
+resta, DEC 0            // Resultado del promedio por restas sucesivas
+ONE, DEC 1              // Constante para incrementar/decrementar
+divisor, DEC 8          // Tamaño de la ventana
+contador, DEC 8         // Datos que faltan por sumar en la ventana
+
+// Punteros a las diferentes zonas de memoria
+ptr_Datos, adr Datos
+ptr_Moving, adr Moving
+ptr_inicial, adr Inicial
+
+
+
+// DATOS DE ENTRADA
+
+
+// Dirección inicial de los datos
+Inicial, HEX 004b
+
+// Arreglo de datos utilizados por el filtro
+Datos, HEX 004e
+	HEX 002d
+	HEX 0006
+	HEX 0021
+	HEX 0002
+	HEX 0038
+	HEX 001f
+	HEX 002d
+	HEX 0033
+	HEX 0059
+	HEX 000b
+	HEX 0047
+	HEX 0011
+	HEX 001c
+	HEX 0048
+	HEX 0010
+	HEX 0046
+	HEX 0015
+	HEX 0036
+	HEX 0064
+	HEX 001b
+	HEX 0062
+	HEX 0048
+	HEX 004d
+	HEX 0022
+	HEX 0028
+	HEX 0056
+	HEX 000a
+	HEX 002a
+	HEX 004f
+	HEX 0034
+	HEX 000f
+	HEX 0010
+	HEX 0020
+	HEX 0022
+	HEX 0029
+	HEX 0026
+	HEX 0034
+	HEX 005e
+	HEX 0003
+	HEX 0036
+	HEX 0033
+	HEX 0027
+	HEX 0000
+	HEX 0063
+	HEX 005a
+	HEX 0049
+	HEX 0029
+	HEX 0004
+	HEX 0056
+	HEX 0051
+	HEX 0034
+	HEX 0015
+	HEX 0060
+	HEX 000d
+	HEX 0041
+	HEX 0029
+	HEX 0002
+	HEX 0037
+	HEX 001d
+	HEX 005f
+	HEX 004c
+	HEX 0002
+	HEX 000f
+	HEX 003a
+	HEX 003b
+	HEX 004e
+	HEX 0018
+	HEX 0035
+	HEX 0037
+	HEX 0022
+	HEX 0059
+	HEX 0012
+	HEX 003b
+	HEX 000d
+	HEX 0049
+	HEX 001a
+	HEX 003c
+	HEX 0004
+	HEX 000a
+	HEX 0013
+	HEX 0037
+	HEX 0036
+	HEX 0031
+	HEX 000f
+	HEX 0020
+	HEX 0003
+	HEX 0007
+	HEX 0003
+	HEX 0038
+	HEX 0035
+	HEX 003b
+	HEX 0018
+	HEX 004c
+	HEX 004e
+	HEX 0037
+	HEX 0054
+	HEX 0015
+	HEX 002b
+	HEX 000c
+	HEX 0045
+	HEX 0059
+	HEX 000f
+	HEX 002c
+	HEX 0064
+	HEX 0038
+	HEX 0034
+	HEX 004e
+	HEX 0059
+	HEX 000a
+	HEX 0040
+	HEX 0021
+	HEX 0015
+	HEX 0000
+	HEX 0000
+	HEX 0034
+	HEX 0023
+	HEX 001a
+	HEX 0053
+	HEX 001b
+	HEX 004d
+	HEX 0009
+	HEX 0047
+	HEX 0056
+	HEX 0029
+	HEX 0063
+	HEX 0039
+	HEX 0027
+	HEX 0045
+	HEX 0014
+	HEX 0012
+	HEX 0051
+	HEX 0046
+	HEX 0008
+	HEX 0042
+	HEX 0033
+	HEX 0011
+	HEX 0005
+	HEX 0028
+	HEX 0007
+	HEX 003b
+	HEX 0008
+	HEX 0045
+	HEX 000a
+	HEX 0007
+	HEX 005f
+	HEX 0031
+	HEX 0002
+	HEX 003f
+	HEX 0018
+	HEX 0026
+	HEX 001e
+	HEX 000e
+	HEX 000d
+	HEX 0006
+	HEX 0051
+	HEX 002e
+	HEX 003c
+	HEX 0021
+	HEX 0015
+	HEX 0038
+	HEX 0058
+	HEX 002e
+	HEX 0053
+	HEX 003d
+	HEX 0047
+	HEX 000c
+	HEX 001e
+	HEX 0044
+	HEX 004c
+	HEX 0037
+	HEX 0048
+	HEX 002e
+	HEX 0004
+	HEX 0005
+	HEX 0042
+	HEX 0057
+	HEX 0031
+	HEX 002b
+	HEX 0050
+	HEX 0027
+	HEX 0030
+	HEX 0010
+	HEX 0038
+	HEX 0005
+	HEX 0044
+	HEX 005f
+	HEX 0042
+	HEX 000b
+	HEX 000f
+	HEX 001d
+	HEX 005d
+	HEX 0051
+	HEX 003a
+	HEX 0038
+	HEX 0037
+	HEX 005e
+	HEX 0042
+	HEX 0020
+    
+
+// RESULTADOS
+
+// Espacio reservado para almacenar
+// los resultados de la media móvil
+Moving, HEX 000
+	HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+HEX 000
+
+
+

@@ -1,0 +1,18 @@
+loop, Load Finish
+	Subt Matriz
+	SkipCond 0
+	Jump llenar
+	Jump fin
+llenar, Load Data
+	StoreI Matriz //Almacenar algo que ya tengo abajo
+	Load Matriz
+	Add ONE
+	Store Matriz //Mueve la posición
+	Jump loop	
+	
+fin, Halt
+
+Matriz, HEX F00
+Finish, HEX FFF//Direccion de inicio del display
+Data, HEX 001F //Color que quiero ponerle
+ONE, DEC 1

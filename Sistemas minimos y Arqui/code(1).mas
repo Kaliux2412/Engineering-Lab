@@ -1,0 +1,31 @@
+//Suma indirecta de 3 numeros
+//Es como de tipo puntero
+LoadI PTR_Y // AC = 8
+Store tmp // 8
+// Mover la posicion del "puntero"
+Load PTR_Y // Cuando se usa directamente es para mover la posicion
+Add ONE
+Store PTR_Y
+//Sumo
+LoadI PTR_Y //AC = 5
+Add tmp
+Store tmp
+Output 
+
+// Mover la posicion del "puntero"
+Load PTR_Y // Cuando se usa directamente es para mover la posicion
+Add ONE
+Store PTR_Y
+//Sumo
+LoadI PTR_Y //AC = 5
+Add tmp
+Store tmp
+Output 
+Halt
+
+PTR_Y, ADR Y
+ONE, DEC 1
+tmp, DEC 0
+Y, DEC 8
+	DEC 5
+	DEC 20

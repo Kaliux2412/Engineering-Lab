@@ -1,0 +1,27 @@
+N1, Input 
+	SkipCond 800
+	jump N1
+	Store mul1
+N2, Input 
+	SkipCond 800
+	jump N2
+	Store mul2
+loop, Load mul2
+	SkipCond 800
+	jump finish
+	load mul1
+	Add total
+	Store total
+	Output
+	Load mul2
+	Subt One
+	jump loop
+	Output
+	Halt
+finish, Output
+	SkipCond 400
+	Halt
+total, DEC 0
+One, DEC 1
+mul1, DEC 0
+mul2, DEC 0

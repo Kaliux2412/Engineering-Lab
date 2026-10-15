@@ -1,0 +1,12 @@
+
+Input 
+Store X
+Input
+Store Y
+
+Add X
+Output
+Halt
+Y, DEC 0
+X, DEC 0
+

@@ -1,0 +1,224 @@
+{
+  "main": {
+    "id": "19c5e05882e06c12",
+    "type": "split",
+    "children": [
+      {
+        "id": "fa0bc6c38b6b021c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7de11994916f099d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Structures/BINARY SEARCH TREES.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "BINARY SEARCH TREES"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "efdfcc9bfbccb7d1",
+    "type": "split",
+    "children": [
+      {
+        "id": "404f82e3db8db567",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9043c7d8f3414384",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de archivos"
+            }
+          },
+          {
+            "id": "2b2c1266273c00cf",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Buscar"
+            }
+          },
+          {
+            "id": "c14b0427380c1207",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "c1815f1fa93f8d7b",
+    "type": "split",
+    "children": [
+      {
+        "id": "0745f69617673e49",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0f6689e1774c3a7d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Data Structures/Bienvenido.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Enlaces entrantes"
+            }
+          },
+          {
+            "id": "e0c25e96ed71c72c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Data Structures/Bienvenido.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Enlaces salientes"
+            }
+          },
+          {
+            "id": "66a74742302c9c9d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "945ebb4cce270e0d",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas las propiedades"
+            }
+          },
+          {
+            "id": "1c6781696459706e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Data Structures/Bienvenido.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Esquema"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir selector rápido": false,
+      "graph:Abrir vista gráfica": false,
+      "canvas:Crear nuevo lienzo": false,
+      "daily-notes:Abrir la nota de hoy": false,
+      "templates:Insertar plantilla": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Crear nueva base": false
+    }
+  },
+  "active": "7de11994916f099d",
+  "lastOpenFiles": [
+    "Pasted image 20261015171108.png",
+    "IOT/IOT/Reto/Codigo_Una_ESP32/Codigo_Una_ESP32.ino",
+    "IOT/IOT/Reto/Codigo_Una_ESP32",
+    "Pasted image 20261015101257.png",
+    "Pasted image 20261015094313.png",
+    "Pasted image 20261015094117.png",
+    "Pasted image 20261015094034.png",
+    "Pasted image 20261015092734.png",
+    "Pasted image 20261015092617.png",
+    "Data Structure (VS y Docs)/Splay_Trees/splay.h",
+    "Data Structure (VS y Docs)/Splay_Trees/test_splay.cpp",
+    "Data Structure (VS y Docs)/Tarea_SplayTree/test_splay.cpp",
+    "Data Structure (VS y Docs)/Tarea_SplayTree/splay.h",
+    "Data Structure (VS y Docs)/Tarea_SplayTree",
+    "Data Structure (VS y Docs)/Splay_Trees",
+    "Data Structure (VS y Docs)/PS/main.exe",
+    "Data Structure (VS y Docs)/PS/Fase2.cpp",
+    "Data Structures/TYPES OF ALGORITHMS.md",
+    "IOT/IOT/DB/TABLAS.md",
+    "IOT/IOT/DB/Bases de datos.md",
+    "Data Structures/BINARY SEARCH TREES.md",
+    "Pasted image 20261012102615.png",
+    "Pasted image 20261012102603.png",
+    "Pasted image 20261012102205.png",
+    "Pasted image 20261012102109.png",
+    "Data Structures/STACKS, QUEUES, DEQUES AND PRIORITY QUEUES.md",
+    "Data Structures/POINTERS.md",
+    "Data Structures/Bienvenido.md",
+    "MARIE/Marie.js/Ejercicio basico comandos.md"
+  ]
+}

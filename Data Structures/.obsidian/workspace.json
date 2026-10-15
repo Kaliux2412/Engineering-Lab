@@ -190,8 +190,9 @@
   },
   "active": "621ae04bb7224bbc",
   "lastOpenFiles": [
-    "Bienvenido.md",
     "POINTERS.md",
-    "TYPES OF ALGORITHMS.md"
+    "TYPES OF ALGORITHMS.md",
+    "STACKS, QUEUES, DEQUES AND PRIORITY QUEUES.md",
+    "Bienvenido.md"
   ]
 }

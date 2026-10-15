@@ -212,3 +212,42 @@ Es el tipo de algoritmo más largo de vista y para escribir pero es muy eficient
 	-Mejor caso: O(n log n)
 	- Promedio O(n log n)
 	-Peor caso: O(n log n)
+- ~ Quick Sort: Es el tipo de algoritmo que usa un pivot para organizar los valores, divide al rededor del pivot. Se elige un pivot, se ponen los menores a un lado y los mayores al otro y se repite lo mismo recursivamente. Ej
+- [8,3,5,2,9,1,7], se escoge como pivot [7], entonces queda [3,5,2,1, [7], 8,9], no ordena todavia, ahora ya sabemos que 7 ya esta en su posicion final, se elige 1 y no hay menores a 1 entonces se pone al inicio, luego sigue con 2 y asi sucesivamente.
+```
+int partition(int arr[], int low, int high) {
+
+    int pivot = arr[high];
+
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+
+        if (arr[j] < pivot) {
+
+            i++;
+
+            swap(arr[i], arr[j]);
+        }
+    }
+
+    swap(arr[i + 1], arr[high]);
+
+    return i + 1;
+}
+void quickSort(int arr[], int low, int high) {
+
+    if (low < high) {
+
+        int pivotIndex = partition(arr, low, high);
+
+        quickSort(arr, low, pivotIndex - 1);
+
+        quickSort(arr, pivotIndex + 1, high);
+    }
+}
+```
+	Complejidad:
+	-Mejor caso: O(n log n)
+	- Promedio O(n log n)
+	-Peor caso: O(n²)

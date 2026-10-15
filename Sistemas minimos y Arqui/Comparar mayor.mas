@@ -1,0 +1,29 @@
+LoadI PTR_Y
+Store mayor
+loop,  LoadI PTR_Y
+	SkipCond 400
+	Jump check_mayor
+	Jump finish
+check_mayor, Load PTR_Y //Para mover l direccion
+	Add ONE
+	Store PTR_Y
+	LoadI PTR_Y
+	Subt mayor
+	SkipCond 800
+	Jump loop
+	LoadI PTR_Y
+	Store mayor
+	Jump loop
+finish, Load mayor
+	Output
+	Halt
+
+PTR_Y, ADR Y
+Y, DEC 8
+	DEC 20
+	DEC 19
+	DEC 15
+	DEC 3
+ONE, DEC 1
+mayor, DEC 0
+tmp, DEC 0

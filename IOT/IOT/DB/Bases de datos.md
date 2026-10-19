@@ -1,7 +1,26 @@
-#### Entidades: representan algún aspecto físico o conceptual del mundo real. 
+==<mark style="background:#affad1">Las BASES DE DATOS</mark>== son un conjunto de información organizada que se puede utilizar de manera optima y efectiva. Los datos están relacionados.
+Antes de las bases de datos existían los sistemas basados en archivos
+DESVENTAJAS:
+- Inconsistencia de datos
+- Redundancia
+- Integridad de los datos
+- Seguridad
+- Dificultad para ligar datos
+PROPIEDADES de una<mark style="background:#affad1"> base de datos RELACIONAL</mark>:
+- Consistente
+- Sirve para un propósito especifico.
+- Organizada en tablas.
+- Los datos se almacenan en registros.
+- Cada registro tiene uno o varios atributos.
+- VENTAJAS:
+	- Asignación de roles de usuario
+	- Respaldo de datos
+	- Control de concurrencia
+	- Independencia entre programa y datos.
+<mark style="background:#d3f8b6">ENTIDADES</mark>: representan algún aspecto físico o conceptual del mundo real. 
 	Se representan como tablas ej. Cliente, Proveedores, Inventario.
-	- Entidades débiles: dependen de otra entidad para existir.
-	- Entidades fuertes (kernels): Son entidades que pueden existir por si sola.
+	- <u>Entidades débiles: </u>dependen de otra entidad para existir. Como en una empresa la entidad Hijo es debil ya que depende de que Empleado exista con hijos.
+	-<u> Entidades fuertes (kernels)</u>: Son entidades que pueden existir por si sola.
 - Relaciones: Representan asociaciones entre entidades.
 - Las entidades se representan con **rectángulos.**
 	Las entidades tienen ATRIBUTOS, como id, edad, nombre, etc. Se representan con **óvalos.**

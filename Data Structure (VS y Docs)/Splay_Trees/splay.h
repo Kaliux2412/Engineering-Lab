@@ -4,8 +4,8 @@
  * then contains, insert and remove (public). Each one uses the ones before it.
  * replaceInParent and lastOnPath are already written. Do not change the rest of the class.
  *
- * Student ID:
- * Date:
+ * Student ID: A01642979
+ * Date: 18/10/2026
  */
 
 #ifndef SPLAY_H
@@ -33,17 +33,41 @@ public:
 	// Searches for x and splays the node where the search ends: x if it is in the tree, otherwise the
 	// last node of its search path (lastOnPath gives it). Returns whether x is in the tree.
 	// An empty tree returns false.
+	// COMPLEXITY: O(log n), worst O(n)
+
 	bool contains(int x) {
-		// TODO
-		return false;
+		if(root == nullptr){
+			return false;
+		}
+		Node *n = lastOnPath(x);
+		bool found = (n->info ==x);
+		splay(n);
+		return found;
 	}
 
 	// Inserts x as in a BST, as a new leaf, and splays the new node. Returns true.
 	// lastOnPath(x) gives the node that holds x, or the node where x must hang. A repeated value adds
 	// no node: it splays the node that already holds x and returns false. Set the parent of the new node.
+	// COMPLEXITY: O(log n), worst O(n)
 	bool insert(int x) {
-		// TODO
-		return false;
+		if(root == nullptr){
+			root = new Node{x, nullptr,nullptr,nullptr};
+			return true;
+		}
+		Node *p = lastOnPath(x);
+		if(p->info ==x){
+			splay(p);
+			return false;
+		}
+		Node *n = new Node{x,nullptr,nullptr, p};
+		if(x < p->info){
+			p->left = n;
+		}
+		else{
+			p->right = n;
+		}
+		splay(n);
+		return true;
 	}
 
 	// Removes x. First contains(x): if x is not there, returns false (the tree was still splayed).
@@ -51,9 +75,38 @@ public:
 	// With no TL, TR is the whole tree. Otherwise make TL the tree, splay its maximum (lastOnPath(x)
 	// finds it, because x is greater than every key of TL), and hang TR as the right child of the new
 	// root. Keep every parent link correct. Returns true.
+	// COMPLEXITY: O(log n), worst O(n)
 	bool remove(int x) {
-		// TODO
-		return false;
+		if(!contains(x)){
+			return false;
+		}
+		Node *old = root;
+		Node *leftTree = old->left;
+		Node *rightTree = old->right;
+
+		if(leftTree != nullptr){
+			leftTree->parent = nullptr;
+		}
+		if(rightTree != nullptr){
+			rightTree->parent = nullptr;
+		}
+		delete old;
+
+		if(leftTree == nullptr){
+			root = rightTree;
+		}
+		else{
+			root = leftTree;
+			Node *max = lastOnPath(x);
+			splay(max);
+			root->right = rightTree;
+
+			if(rightTree != nullptr){
+				rightTree->parent = root;
+			}
+		}
+		return true;
+
 	}
 
 	// The public methods that print also end the line.
@@ -84,21 +137,68 @@ private:
 	// Rotates right at a: b, the left child of a, rises and a goes down to its right. The right subtree
 	// of b becomes the left subtree of a. Keep every parent link correct; replaceInParent puts b where
 	// a was (it also updates root when a was the root).
+	// Complexity: O(1) time, O(1) extra space.
 	void rotateRight(Node *a) {
-		// TODO
+		Node *b = a->left;
+		a->left = b->right;
+		if(b->right !=nullptr){
+			b->right->parent =a;
+		}
+		replaceInParent(a,b);
+		b->right = a;
+		a->parent = b;
 	}
 
 	// The mirror image: the right child of a rises and a goes down to its left.
+		// Complexity: O(1) time, O(1) extra space.
+
 	void rotateLeft(Node *a) {
-		// TODO
+		Node *b = a->right;
+		a->right = b->left;
+		if(b->left !=nullptr){
+			b->left ->parent =a;
+		}
+		replaceInParent(a,b);
+		b->left =a;
+		a->parent =b;
 	}
 
 	// Moves x to the root. While x has a parent P, look at its grandparent G and apply the case:
 	//   no G:                          zig (rotate right at P) or zag (rotate left at P)
 	//   P is the left child of G:      zig-zig (right at G, then right at P) or zig-zag (left at P, then right at G)
 	//   P is the right child of G:     zag-zag (left at G, then left at P) or zag-zig (right at P, then left at G)
+	// Complexity: O(n) worst-case, O(log n) amortized.
 	void splay(Node *x) {
-		// TODO
+		while(x != nullptr && x->parent != nullptr){
+			Node *p = x->parent;
+			Node *g = p->parent;
+
+			if(g == nullptr){
+				if(x == p->left){
+					rotateRight(p);
+				}
+				else{
+					rotateLeft(p);
+				}
+			}
+			else if(p == g->left && x == p->left){
+				rotateRight(g);
+				rotateRight(p);
+			}
+			else if (p == g->right && x == p->right){
+				rotateLeft(g);
+				rotateLeft(p);
+			}
+			else if (p == g->left && x == p->right){
+				rotateLeft(p);
+				rotateRight(g);
+			}
+			else{
+				rotateRight(p);
+				rotateLeft(g);				
+			}
+
+		}
 	}
 
 	// Returns the node with x, or the last node of the search path of x. root is not null. Already written.
